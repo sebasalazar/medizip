@@ -15,6 +15,8 @@ extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
+
 
     void limpiar(void);
     void pausa(void);
@@ -25,6 +27,7 @@ extern "C" {
     char* leer_string(char *label);
     long leer_long(char *label);
     int leer_int(char *label);
+    struct timeval ahora();
 #ifdef	__cplusplus
 }
 #endif

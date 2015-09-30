@@ -77,6 +77,16 @@ extern "C" {
         int anio;
     } ranking_profesor;
 
+    typedef struct {
+        long id;
+        long pacienteId;
+        char *archivo;
+        int cantidad_examenes;
+        double tiempo_procesamiento;
+        int codigo_salida;
+    } compresion;
+
+
     ramo *consultar_asignatura(char* asignatura);
     profesor *consultar_docente(long docente_id);
     alumno *consultar_estudiante(long estudiante_id);

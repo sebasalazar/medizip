@@ -106,3 +106,9 @@ int leer_int(char *label) {
 
     return resultado;
 }
+
+struct timeval ahora() {
+    struct timeval tiempo;
+    gettimeofday(&tiempo, NULL);
+    return tiempo;
+}
