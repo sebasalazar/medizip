@@ -31,7 +31,7 @@ extern "C" {
 
 
     lista* consultar_examenes(long id, char* nombre);
-    int insertar_compresion(compresion zip);
+    int insertar_compresion(compresion* zip);
 
 #ifdef	__cplusplus
 }

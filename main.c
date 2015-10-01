@@ -57,6 +57,7 @@ int main(int argc, char** argv) {
             zip.cantidad_examenes = cantidad_examenes;
             zip.tiempo_procesamiento = tiempo_transcurrido;
             zip.codigo_salida = codigo_salida;
+            insertar_compresion(&zip);
         } else {
             fprintf(stderr, "Argumentos inválidos");
         }

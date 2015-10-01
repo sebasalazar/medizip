@@ -34,8 +34,25 @@ lista* consultar_examenes(long id, char* nombre) {
     return examenes;
 }
 
-int insertar_compresion(compresion zip) {
+int insertar_compresion(compresion* zip) {
     int ok = 0;
+    char sql[2048];
+    PGconn *conexion = NULL;
+    PGresult *resultado = NULL;
+
+    if (zip != NULL) {
+        memset(sql, 0, sizeof (sql));
+        sprintf(sql, "INSERT INTO compresiones (paciente_fk, archivo, cantidad_examenes, tiempo_procesamiento, codigo_salida) VALUES ('%ld','%s','%d','%lf','%d')", zip->pacienteId, zip->archivo, zip->cantidad_examenes, zip->tiempo_procesamiento, zip->codigo_salida);
+        conexion = dbconnect(NOMBREDB, USUARIODB, PASSDB);
+        if (conexion != NULL) {
+            resultado = dbquery(conexion, sql);
+            ok = dbnumrows(resultado);
+            if (ok) {
+                dbfree(resultado);
+            }
+            dbclose(conexion);
+        }
+    }
     return ok;
 }
 
