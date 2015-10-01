@@ -112,3 +112,28 @@ struct timeval ahora() {
     gettimeofday(&tiempo, NULL);
     return tiempo;
 }
+
+char* concatenar_con_espacio(char* primer, char* segundo) {
+    char* resultado = NULL;
+    int largo = 0;
+    int largo_primer = 0;
+    int largo_segundo = 0;
+
+    if (primer != NULL) {
+        largo_primer = strlen(primer);
+    }
+
+    if (segundo != NULL) {
+        largo_segundo = strlen(segundo);
+    }
+
+    largo = largo_primer + largo_segundo + 2;
+    if (largo > 2) {
+        resultado = (char *) calloc(largo, sizeof (char));
+        if (resultado != NULL) {
+            sprintf(resultado, "%s %s", primer, segundo);
+        }
+    }
+
+    return resultado;
+}

@@ -24,6 +24,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/utils.o \
 	${OBJECTDIR}/db.o \
 	${OBJECTDIR}/servicio.o \
+	${OBJECTDIR}/archivo.o \
 	${OBJECTDIR}/lista.o \
 	${OBJECTDIR}/main.o
 
@@ -78,6 +79,11 @@ ${OBJECTDIR}/servicio.o: servicio.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(CC) $(CFLAGS) -c -MMD -MP -MF $@.d -o ${OBJECTDIR}/servicio.o servicio.c	
+
+${OBJECTDIR}/archivo.o: archivo.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(CC) $(CFLAGS) -c -MMD -MP -MF $@.d -o ${OBJECTDIR}/archivo.o archivo.c
 
 ${OBJECTDIR}/lista.o: lista.c
 	${MKDIR} -p ${OBJECTDIR}

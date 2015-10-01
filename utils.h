@@ -28,6 +28,7 @@ extern "C" {
     long leer_long(char *label);
     int leer_int(char *label);
     struct timeval ahora();
+    char* concatenar_con_espacio(char* primer, char* segundo);
 #ifdef	__cplusplus
 }
 #endif
