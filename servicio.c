@@ -23,6 +23,8 @@ lista* consultar_examenes(long id, char* nombre) {
                     sprintf(temporal, "/opt/dcm4chee/server/default/archive/%s", getString(dbresult(resultado, i, 1)));
                     if (is_regular_file(temporal)) {
                         agregar_en_lista(examenes, temporal);
+                    } else {
+                        fprintf(stderr,"\nArchivo: '%s' NO existe", temporal);
                     }
                 }
                 dbfree(resultado);
