@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     lista *examenes;
     char* argumentos_zip = NULL;
     char nombre_archivo[1024];
-    char cmd[2048];
+    char* cmd;
     int codigo_salida = -1;
     compresion zip;
 
@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
             memset(nombre_archivo, 0, sizeof (nombre_archivo));
             sprintf(nombre_archivo, "/srv/web/medipacs.cl/www/htdocs/zip/%s%ld.zip", nombre, id);
 
-            memset(cmd, 0, sizeof (cmd));
+            cmd = (char *) calloc(strlen(nombre_archivo) + strlen(argumentos_zip) + 25, sizeof(char));
             sprintf(cmd, "/usr/bin/zip -5 %s %s", nombre_archivo, argumentos_zip);
 
             codigo_salida = system(cmd);
