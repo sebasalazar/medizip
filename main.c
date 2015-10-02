@@ -35,16 +35,20 @@ int main(int argc, char** argv) {
 
             examenes = consultar_examenes(id, nombre);
             cantidad_examenes = largo_lista(examenes);
-            for (i = 0; i < cantidad_examenes; i++) {
-                dato = consultar_dato(examenes, i);
-                argumentos_zip = concatenar_con_espacio(argumentos_zip, dato);
+            if (cantidad_examenes > 0) {
+                for (i = 0; i < cantidad_examenes; i++) {
+                    dato = consultar_dato(examenes, i);
+                    argumentos_zip = concatenar_con_espacio(argumentos_zip, dato);
+                }
+                eliminar_lista(examenes);
             }
 
             memset(nombre_archivo, 0, sizeof (nombre_archivo));
             sprintf(nombre_archivo, "/srv/web/medipacs.cl/www/htdocs/zip/%s%ld.zip", nombre, id);
 
-            cmd = (char *) calloc(strlen(nombre_archivo) + strlen(argumentos_zip) + 25, sizeof(char));
+            cmd = (char *) calloc(strlen(nombre_archivo) + strlen(argumentos_zip) + 25, sizeof (char));
             sprintf(cmd, "/usr/bin/zip -5 %s %s", nombre_archivo, argumentos_zip);
+            fprintf(stderr, "%s", cmd);
 
             codigo_salida = system(cmd);
 
@@ -58,6 +62,9 @@ int main(int argc, char** argv) {
             zip.tiempo_procesamiento = tiempo_transcurrido;
             zip.codigo_salida = codigo_salida;
             insertar_compresion(&zip);
+
+            free(cmd);
+            free(argumentos_zip);
         } else {
             fprintf(stderr, "Argumentos inválidos");
         }
