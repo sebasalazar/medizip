@@ -36,8 +36,7 @@ int main(int argc, char** argv) {
             examenes = consultar_examenes(id, nombre);
             cantidad_examenes = largo_lista(examenes);
             if (cantidad_examenes > 0) {
-                argumentos_zip = (char *) calloc(2, sizeof (char));
-                sprintf(argumentos_zip, "");
+                argumentos_zip = (char *) calloc(1, sizeof (char));
 
                 for (i = 0; i < cantidad_examenes; i++) {
                     dato = consultar_dato(examenes, i);
